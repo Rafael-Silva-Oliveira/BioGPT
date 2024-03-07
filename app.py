@@ -115,21 +115,16 @@ if "context" in st.session_state:
 
 
 # display the response
-if "response" in st.session_state:
-    with st.chat_message("assistant"):
-        # run the model
-        st.session_state.BioinformaticsAgent = BioinformaticsAgent(
-            model=model, task=task
-        )
-        response = st.session_state.BioinformaticsAgent.run_chain(
-            task=task, context=st.session_state.context, question=question
-        )
+with st.chat_message("assistant"):
+    # run the model
+    st.session_state.BioinformaticsAgent = BioinformaticsAgent(model=model, task=task)
+    response = st.session_state.BioinformaticsAgent.run_chain(
+        task=task, context=st.session_state.context, question=question
+    )
 
-        if "response" not in st.session_state:
-            st.session_state.response = response
+    if "response" not in st.session_state:
+        st.session_state.response = response
 
-        else:
-            st.session_state.response = response
-        st.markdown(response)
-else:
-    st.warning("Choose a model and a prompt first", icon="⚠️")
+    else:
+        st.session_state.response = response
+    st.markdown(response)
