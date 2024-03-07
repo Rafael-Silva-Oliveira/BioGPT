@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Streamlit",
+      "type": "python",
+      "request": "launch",
+      "program": "C://Users//rafaelo//OneDrive - NTNU//Documents//Projects//venv//Scripts//streamlit.exe",
+      "args": ["run", "${workspaceFolder}/app.py"],
+      "console": "integratedTerminal"
+    }
+  ]
+}
