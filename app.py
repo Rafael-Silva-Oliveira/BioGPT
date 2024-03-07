@@ -101,9 +101,7 @@ if st.button("Clear context"):
     st.session_state.__delitem__("context")
     st.session_state.__delitem__("response")
 # create a selectbox widget for the model in the sidebar
-model = st.sidebar.selectbox(
-    "Select a model", ["microsoft/biogpt", "facebook/bart-large-cnn"]
-)
+model = st.sidebar.selectbox("Select a model", ["facebook/bart-large-cnn"])
 
 # create a selectbox widget for the task in the sidebar
 task = st.sidebar.selectbox("Select a task", ["text-generation", "question-answering"])
@@ -114,8 +112,11 @@ if "context" in st.session_state:
     question = st.chat_input("Write the prompt")
     if question:
         st.write(f"{question}")
-    # create a button to run the model
-    if st.button("Run"):
+
+
+# display the response
+if "response" in st.session_state:
+    with st.chat_message("assistant"):
         # run the model
         st.session_state.BioinformaticsAgent = BioinformaticsAgent(
             model=model, task=task
@@ -129,10 +130,6 @@ if "context" in st.session_state:
 
         else:
             st.session_state.response = response
-
-# display the response
-if "response" in st.session_state:
-    with st.chat_message("assistant"):
         st.markdown(response)
 else:
     st.warning("Choose a model and a prompt first", icon="⚠️")
