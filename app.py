@@ -1,4 +1,3 @@
-from langchain.chat_models import ChatAnthropic
 from langchain import PromptTemplate, LLMChain
 from langchain.prompts.chat import (
     ChatPromptTemplate,
@@ -14,8 +13,9 @@ from transformers import set_seed
 from transformers import BioGptTokenizer, BioGptForCausalLM
 import os
 from langchain import PromptTemplate, HuggingFaceHub, LLMChain
+from dotenv import load_dotenv
 
-os.environ["HUGGINGFACEHUB_API_TOKEN"] = "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"
+load_dotenv()
 
 
 class BioinformaticsAgent:
